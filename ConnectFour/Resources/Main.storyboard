@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Or1-Hr-YpC">
     <device id="ipad12_9" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -19,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="vPb-wV-oi9">
-                                <rect key="frame" x="106" y="148" width="1154.5" height="801"/>
+                                <rect key="frame" x="106" y="146.5" width="1154.5" height="801"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="wdr-Df-aK5">
                                         <rect key="frame" x="0.0" y="0.0" width="1154.5" height="111"/>
@@ -406,22 +405,22 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gfz-9U-Tjq">
-                                <rect key="frame" x="25" y="90" width="1316" height="50"/>
+                                <rect key="frame" x="25" y="90" width="1316" height="48.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2yn-gH-Ed1">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="48.5"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                         <color key="textColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please tap above a cloumn to set a disc." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZbH-vh-Wtp">
-                                        <rect key="frame" x="54" y="0.0" width="0.0" height="50"/>
+                                        <rect key="frame" x="54" y="0.0" width="0.0" height="48.5"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zYg-bY-ulE">
-                                        <rect key="frame" x="1259.5" y="0.0" width="56.5" height="50"/>
+                                        <rect key="frame" x="1259.5" y="0.0" width="56.5" height="48.5"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                         <color key="textColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -434,10 +433,11 @@
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vPb-wV-oi9" secondAttribute="trailing" constant="25" id="1Mp-8Y-Akk"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="vPb-wV-oi9" secondAttribute="bottom" constant="25" id="44w-kQ-3By"/>
+                            <constraint firstItem="vPb-wV-oi9" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="Doo-OF-sfM"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gfz-9U-Tjq" secondAttribute="trailing" constant="25" id="Nnj-7f-mxg"/>
                             <constraint firstItem="gfz-9U-Tjq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="PWl-Tw-zlU"/>
                             <constraint firstItem="vPb-wV-oi9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="fBr-7O-WqP"/>
-                            <constraint firstItem="vPb-wV-oi9" firstAttribute="top" secondItem="gfz-9U-Tjq" secondAttribute="bottom" constant="8" symbolic="YES" id="gud-oQ-qGk"/>
+                            <constraint firstItem="vPb-wV-oi9" firstAttribute="top" relation="greaterThanOrEqual" secondItem="gfz-9U-Tjq" secondAttribute="bottom" constant="8" symbolic="YES" id="gud-oQ-qGk"/>
                             <constraint firstItem="vPb-wV-oi9" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="mwF-QZ-6rd"/>
                             <constraint firstItem="gfz-9U-Tjq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="rlj-jl-dMt"/>
                         </constraints>
