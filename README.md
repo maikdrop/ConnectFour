@@ -91,5 +91,5 @@ The following list contains the most important technical informations about the 
 
 <p align="justify">Unit tests have been used to test and verify the game logic. It's tested if 4 discs in a row are detected horizotally, vertically and diagonally. Furthermore, it's tested when all fields are set.</p>
 
-* [Unit tests](ConnectFourTests/ConnectFourTests)
+* [Unit tests](ConnectFourTests/ConnectFourTests.swift)
 
