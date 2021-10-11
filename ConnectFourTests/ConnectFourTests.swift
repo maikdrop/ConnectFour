@@ -208,7 +208,7 @@ class ConnectFourTests: XCTestCase {
     }
     
     /**
-     Tests the detection of available discs.
+     Tests the detection of available fields.
      */
     func testDetectingNoFieldsAvailable() {
         
