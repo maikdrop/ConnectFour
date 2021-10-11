@@ -21,6 +21,7 @@ class EditPlayerTableViewCell: UITableViewCell {
     @IBOutlet weak var playerTextField: UITextField! {
         didSet {
             playerTextField.autocorrectionType = .no
+            playerTextField.clearButtonMode = .always
         }
     }
 }

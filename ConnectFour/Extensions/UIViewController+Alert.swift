@@ -48,7 +48,7 @@ extension UIViewController {
      - Parameter title: The title of the alert.
      - Parameter message: The message of the alert.
      */
-    func infoAlert(title: String?, message: String?) {
+    func showInfoAlert(title: String?, message: String?) {
         
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         

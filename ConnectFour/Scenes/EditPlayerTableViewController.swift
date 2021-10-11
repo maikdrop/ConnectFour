@@ -19,6 +19,7 @@ class EditPlayerTableViewController: UITableViewController {
     
     // MARK: - Typealias
     typealias Key = AppStrings.UserDefaults
+    typealias Alert = AppStrings.Alert
     
     // MARK: - IBOutlets and Actions
     @IBAction func cancelAction(_ sender: UIBarButtonItem) {
@@ -32,11 +33,18 @@ class EditPlayerTableViewController: UITableViewController {
         
         if players.count == 2 {
             
-            let gameConfig = GameConfig(name1: players[0], name2: players[1])
-            
-            try? userDefaults.setObject(gameConfig, forKey: Key.gameConfigKey)
+            if players[0] == players[1] {
+                
+                showInfoAlert(
+                    title: Alert.sameNameTitle,
+                    message: Alert.sameNameMsg)
+                
+            } else {
+                
+                saveGameConfig()
+                oneDoneBlock()
+            }
         }
-        oneDoneBlock()
     }
 
     // MARK: - Properties
@@ -102,6 +110,16 @@ extension EditPlayerTableViewController {
     }
     
     /**
+     Saves the new game configuration.
+     */
+    private func saveGameConfig() {
+        
+        let gameConfig = GameConfig(name1: players[0], name2: players[1])
+        
+        try? userDefaults.setObject(gameConfig, forKey: Key.gameConfigKey)
+    }
+    
+    /**
      Target method when a text field changes.
      */
     @objc private func textFieldDidChange(_ sender: UITextField) {
@@ -110,13 +128,8 @@ extension EditPlayerTableViewController {
             return
         }
         
-        players[sender.tag] = text
+        doneBtn.isEnabled = !text.isEmpty
         
-        if text.isEmpty {
-            doneBtn.isEnabled = false
-            
-        } else {
-            doneBtn.isEnabled = true
-        }
+        players[sender.tag] = text
     }
 }

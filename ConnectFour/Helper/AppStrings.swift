@@ -28,6 +28,15 @@ enum AppStrings {
         static let retryActionTitle = "Retry"
         static let okTitle = "Ok"
         static let newGameTitle = "New Game"
+        static let sameNameTitle = "Name Issue"
+        static let sameNameMsg = "Please choose a different name."
+        
+    }
+    
+    enum CellIdentifier {
+        
+        static let player = "playerIdentifier"
+        static let color = "colorIdentifier"
     }
     
     enum DefaultGameConfig {
@@ -43,6 +52,12 @@ enum AppStrings {
         static let title = "Connect Four"
     }
     
+    enum HeaderTitles {
+        
+        static let editPlayer = "Edit Name"
+        static let colors = "Colors"
+    }
+    
     enum UserDefaults {
         
         static let gameConfigKey = "gameConfigKey"
@@ -53,22 +68,9 @@ enum AppStrings {
         static let editPlayer = "editPlayerSegue"
     }
     
-    enum CellIdentifier {
-        
-        static let player = "playerIdentifier"
-        static let color = "colorIdentifier"
-    }
-    
     enum StoryboardIdentifier {
         
         static let colorsVC = "ColorsTableViewController"
         static let main = "Main"
-    }
-    
-    enum HeaderTitles {
-        
-        static let editPlayer = "Edit Name"
-        static let colors = "Colors"
-        
     }
 }
