@@ -128,6 +128,7 @@ extension ConnectFour {
         // check left
         for index in 0..<discsToWin {
             
+            // subscript checks if index exists and returns either nil or the value at the index
             if let field = row[optional:column - index], field == player {
                 
                 foundDiscs += 1
