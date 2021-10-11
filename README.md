@@ -1,4 +1,4 @@
-# Conenct Four Overview
+# Connect Four Overview
 
 ## Author
 
