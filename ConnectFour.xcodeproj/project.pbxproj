@@ -22,6 +22,8 @@
 		290036B6271449E4002678FB /* EditPlayerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290036A6271449E4002678FB /* EditPlayerTableViewController.swift */; };
 		290036B7271449E4002678FB /* ConnectFourViewController+GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290036A7271449E4002678FB /* ConnectFourViewController+GameState.swift */; };
 		290036B8271449E4002678FB /* ConnectFourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290036A8271449E4002678FB /* ConnectFourViewController.swift */; };
+		2946FDA727149184007E7076 /* AutoLayoutLandscape.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2946FDA527149184007E7076 /* AutoLayoutLandscape.jpg */; };
+		2946FDA827149184007E7076 /* AutoLayoutPortrait.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2946FDA627149184007E7076 /* AutoLayoutPortrait.jpg */; };
 		29B511C727143288003E83DD /* ConnectFourTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B511C627143288003E83DD /* ConnectFourTests.swift */; };
 		29B511E127143387003E83DD /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 29B511DF27143386003E83DD /* LICENSE */; };
 		29B511E227143387003E83DD /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 29B511E027143386003E83DD /* README.md */; };
@@ -57,6 +59,8 @@
 		290036A6271449E4002678FB /* EditPlayerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPlayerTableViewController.swift; sourceTree = "<group>"; };
 		290036A7271449E4002678FB /* ConnectFourViewController+GameState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ConnectFourViewController+GameState.swift"; sourceTree = "<group>"; };
 		290036A8271449E4002678FB /* ConnectFourViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectFourViewController.swift; sourceTree = "<group>"; };
+		2946FDA527149184007E7076 /* AutoLayoutLandscape.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = AutoLayoutLandscape.jpg; sourceTree = "<group>"; };
+		2946FDA627149184007E7076 /* AutoLayoutPortrait.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = AutoLayoutPortrait.jpg; sourceTree = "<group>"; };
 		29B511AC27143287003E83DD /* ConnectFour.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ConnectFour.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29B511C227143288003E83DD /* ConnectFourTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConnectFourTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		29B511C627143288003E83DD /* ConnectFourTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectFourTests.swift; sourceTree = "<group>"; };
@@ -143,6 +147,15 @@
 			path = Scenes;
 			sourceTree = "<group>";
 		};
+		2946FDA42714916D007E7076 /* ReadMeImages */ = {
+			isa = PBXGroup;
+			children = (
+				2946FDA527149184007E7076 /* AutoLayoutLandscape.jpg */,
+				2946FDA627149184007E7076 /* AutoLayoutPortrait.jpg */,
+			);
+			path = ReadMeImages;
+			sourceTree = "<group>";
+		};
 		29B511A327143287003E83DD = {
 			isa = PBXGroup;
 			children = (
@@ -188,6 +201,7 @@
 		29B511E327144767003E83DD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2946FDA42714916D007E7076 /* ReadMeImages */,
 				29B511E427144767003E83DD /* Assets.xcassets */,
 				29B511E527144767003E83DD /* LaunchScreen.storyboard */,
 				29B511E727144767003E83DD /* Main.storyboard */,
@@ -276,8 +290,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2946FDA727149184007E7076 /* AutoLayoutLandscape.jpg in Resources */,
 				29B511E227143387003E83DD /* README.md in Resources */,
 				29B511EB27144767003E83DD /* Main.storyboard in Resources */,
+				2946FDA827149184007E7076 /* AutoLayoutPortrait.jpg in Resources */,
 				29B511E127143387003E83DD /* LICENSE in Resources */,
 				29B511EA27144767003E83DD /* LaunchScreen.storyboard in Resources */,
 				29B511E927144767003E83DD /* Assets.xcassets in Resources */,
