@@ -8,6 +8,11 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ 
+  Abstract:
+  The extension adds the following possibilities to the User Defaults:
+    - retrieve objects which conform to Decodable protocol in order to decode them with the JSONDecoder
+    - store ojects which conform to encodable protocol in order to encode them with the JSONEncoder
  */
 
 import Foundation
@@ -32,7 +37,7 @@ extension UserDefaults {
      - Parameter forKey: A key in the current user‘s defaults database.
      - Parameter type: The type of the object.
      
-     - Returns: a JSON decoded object
+     - Returns: A JSON decoded object.
      */
     func getObject<Object>(forKey: String, as type: Object.Type) throws -> Object? where Object: Decodable {
 

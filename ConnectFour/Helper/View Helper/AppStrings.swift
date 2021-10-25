@@ -20,7 +20,7 @@ enum AppStrings {
     enum Alert {
         
         static let errorTitle = "Oops"
-        static let errorMsg: String = "Something went wrong while customizing the game. Do you want to use the default configuration or retry it?"
+        static let errorMsg = "Something went wrong while fetching the latest color configurations. Do you want to retry?"
         static let victoryTitle = "Congratulations 👏"
         static let victoryMsg = "won the game!"
         static let noMoreFieldsTitle = "No more fields available"
@@ -30,13 +30,17 @@ enum AppStrings {
         static let newGameTitle = "New Game"
         static let sameNameTitle = "Name Issue"
         static let sameNameMsg = "Please choose a different name."
+        static let noConnectionAlertTitle = "Turn Off Airplane Mode or Use Wi-Fi to access Data."
+        static let savedSuccessfullyTitle = "Player names were saved successfully."
         
+        static let settingsBtn = "Settings"
     }
     
     enum CellIdentifier {
         
         static let player = "playerIdentifier"
         static let color = "colorIdentifier"
+        static let config = "configurationIdentifier"
     }
     
     enum DefaultGameConfig {
@@ -47,30 +51,40 @@ enum AppStrings {
         static let color2 = "#0000FF"
     }
     
-    enum Game {
-        
-        static let title = "Connect Four"
-    }
-    
     enum HeaderTitles {
         
-        static let editPlayer = "Edit Name"
-        static let colors = "Colors"
-    }
-    
-    enum UserDefaults {
-        
-        static let gameConfigKey = "gameConfigKey"
+        static let colorConfig = "Color Configuration"
     }
     
     enum SegueIdentifier {
         
         static let editPlayer = "editPlayerSegue"
+        static let chooseColor = "chooseColorSegue"
+        static let settings = "settingsSegue"
     }
     
-    enum StoryboardIdentifier {
+    enum TextField {
         
-        static let colorsVC = "ColorsTableViewController"
-        static let main = "Main"
+        static let required = "Required"
+    }
+    
+    enum Titles {
+        
+        static let game = "Connect Four"
+        static let chooseColors = "Choose Colors"
+        static let editPlayer = "Edit Player"
+        static let configuration = "Configuration"
+    }
+    
+    enum UserDefaults {
+        
+        static let currentGameConfigKey = "currentGameConfigKey"
+        static let fetchedGameConfigsKey = "fetchedGameCofigsKey"
+    }
+    
+    enum ConfigurationTVC {
+        
+        static let players = "Players"
+        static let colors = "Colors"
     }
 }

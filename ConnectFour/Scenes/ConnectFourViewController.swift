@@ -20,7 +20,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
  */
 
 import UIKit
-import Combine
 
 class ConnectFourViewController: UIViewController {
     
@@ -55,7 +54,7 @@ class ConnectFourViewController: UIViewController {
      
      - Parameter sender: The sender of the action.
      */
-    @IBAction func setDisc(_ sender: UIButton) {
+    @IBAction private func setDisc(_ sender: UIButton) {
     
         if let column = setDiscButtons.firstIndex(of: sender) {
             game.setDisc(at: column, from: currentPlayer)
@@ -75,8 +74,17 @@ class ConnectFourViewController: UIViewController {
     
     private var gameConfig: GameConfig! {
         didSet {
-            try? userDefaults.setObject(gameConfig, forKey: Key.gameConfigKey)
-            gameState = .new
+            
+            players = Players(player1: gameConfig.namePlayer1, player2: gameConfig.namePlayer2)
+            
+            if oldValue == nil {
+                
+                gameState = .new
+            
+            } else {
+                
+                updateViewFromModel()
+            }
         }
     }
     
@@ -92,7 +100,6 @@ class ConnectFourViewController: UIViewController {
             switch gameState {
             case .new:
                 playField.isUserInteractionEnabled = true
-                players = Players(player1: gameConfig.name1, player2: gameConfig.name2)
                 createNewGame()
                 updateViewFromModel()
             case .end:
@@ -112,7 +119,7 @@ extension ConnectFourViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = AppStrings.Game.title
+        navigationItem.title = AppStrings.Titles.game
         checkUserDefaultsForGameConfig()
     }
 }
@@ -124,6 +131,8 @@ extension ConnectFourViewController {
      Updates the UI from the model.
      */
     func updateViewFromModel() {
+        
+        configTopLabels()
         
         for rowIndex in playField.subviews.indices.reversed() {
             
@@ -147,7 +156,6 @@ extension ConnectFourViewController {
                 }
             }
         }
-        configTopLabels()
     }
     
     /**
@@ -159,12 +167,12 @@ extension ConnectFourViewController {
         playerAdviceLbl.isHidden = false
         
         player1Lbl.text = " " + players.player1 + " "
-        player1Lbl.textColor = UIColor(hex: gameConfig.color1)
+        player1Lbl.textColor = UIColor(hex: gameConfig.colorPlayer1)
         player1Lbl.layer.borderWidth = 2
         player1Lbl.layer.borderColor = UIColor.clear.cgColor
         
         player2Lbl.text = " " + players.player2 + " "
-        player2Lbl.textColor = UIColor(hex: gameConfig.color2)
+        player2Lbl.textColor = UIColor(hex: gameConfig.colorPlayer2)
         player2Lbl.layer.borderWidth = 2
         player2Lbl.layer.borderColor = UIColor.clear.cgColor
         
@@ -198,7 +206,6 @@ extension ConnectFourViewController {
                                  message: message,
                                  firstActionTitle: AppStrings.Alert.okTitle,
                                  secondActionTitle: AppStrings.Alert.newGameTitle,
-                                 firstAction: nil,
                                  secondAction: { self.gameState = .new } )
         }
     }
@@ -224,27 +231,37 @@ extension ConnectFourViewController {
      */
     private func checkUserDefaultsForGameConfig() {
         
-        if let config = try? userDefaults.getObject(forKey: Key.gameConfigKey, as: GameConfig.self) {
+        if let config = try? userDefaults.getObject(forKey: Key.currentGameConfigKey, as: GameConfig.self) {
             
             gameConfig = config
         
         } else { gameConfig = GameConfig() }
     }
+    
+    @objc private func onDoneAction() {
+        
+        presentedViewController?.dismiss(animated: true)
+        
+        checkUserDefaultsForGameConfig()
+    }
 }
 
-// MARK: - Segues
+// MARK: - Navigation
 extension ConnectFourViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == AppStrings.SegueIdentifier.editPlayer, let vc = (segue.destination as? UINavigationController)?.viewControllers.first as? EditPlayerTableViewController  {
+        if segue.identifier == AppStrings.SegueIdentifier.settings {
             
-            vc.navigationItem.title = navigationItem.leftBarButtonItem?.title
-            
-            vc.oneDoneBlock = {
+            if let settingsVC = (segue.destination as? UINavigationController)?.viewControllers.first {
                 
-                self.presentedViewController?.dismiss(animated: true)
-                self.checkUserDefaultsForGameConfig()
+                settingsVC.isModalInPresentation = true
+                settingsVC.navigationItem.title = AppStrings.Titles.configuration
+                settingsVC.navigationItem.rightBarButtonItem = UIBarButtonItem(
+                    barButtonSystemItem: .done,
+                    target: self,
+                    action: #selector(onDoneAction)
+                )
             }
         }
     }

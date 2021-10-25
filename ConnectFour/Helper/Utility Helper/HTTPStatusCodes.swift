@@ -10,41 +10,29 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  
   Abstract:
-  The extension adds the possibility to UIColor to initialize a UIColor from an hex string.
- */
+  The enum is used to help with the verification of http response codes.
+*/
 
-import UIKit
+import Foundation
 
-//source: https://www.hackingwithswift.com/example-code/uicolor/how-to-convert-a-hex-color-to-a-uicolor
-extension UIColor {
+enum HTTPStatusCode: Int {
     
-    // - Creates a UIColor from hex String
-    public convenience init?(hex: String) {
-        
-        let r, g, b: CGFloat
-        
-        var hexString = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
-        
-        if hexString.hasPrefix("#") {
-            
-            hexString.remove(at: hexString.startIndex)
+    case Info = 100
+    case Success = 200
+    case Redirect = 300
+    case Client = 400
+    case Server = 500
+    case Unknown = 999
+    
+    // - Create an http status code, e.g. from an received http response code and compare the result.
+    init(code: Int) {
+        switch code {
+        case 100...199: self = .Info
+        case 200...299: self = .Success
+        case 300...399: self = .Redirect
+        case 400...499: self = .Client
+        case 500...599: self = .Server
+        default: self = .Unknown
         }
-        
-        if hexString.count != 6 {  self.init(red: 0, green: 0, blue: 0, alpha: 1) }
-        
-        let scanner = Scanner(string: hexString)
-        var hexNumber: UInt64 = 0
-        
-        if scanner.scanHexInt64(&hexNumber) {
-            
-            r = CGFloat((hexNumber & 0xff0000) >> 16) / 255
-            g = CGFloat((hexNumber & 0x00ff00) >> 8) / 255
-            b = CGFloat(hexNumber & 0x0000ff) / 255
-            
-            self.init(red: r, green: g, blue: b, alpha: 1)
-            return
-        }
-       
-        return nil
     }
 }

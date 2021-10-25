@@ -22,6 +22,12 @@
 		290036B6271449E4002678FB /* EditPlayerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290036A6271449E4002678FB /* EditPlayerTableViewController.swift */; };
 		290036B7271449E4002678FB /* ConnectFourViewController+GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290036A7271449E4002678FB /* ConnectFourViewController+GameState.swift */; };
 		290036B8271449E4002678FB /* ConnectFourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290036A8271449E4002678FB /* ConnectFourViewController.swift */; };
+		2966173527248DC300F68AEE /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2966173327248DC300F68AEE /* Network.swift */; };
+		2966173627248DC300F68AEE /* HTTPStatusCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2966173427248DC300F68AEE /* HTTPStatusCodes.swift */; };
+		2966173927248F0C00F68AEE /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2966173827248F0C00F68AEE /* LoadingViewController.swift */; };
+		2966173B2724923E00F68AEE /* ChooseColorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2966173A2724923E00F68AEE /* ChooseColorTableViewController.swift */; };
+		296617462726BF2C00F68AEE /* GameConfig+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296617452726BF2C00F68AEE /* GameConfig+Equatable.swift */; };
+		296617482726CC0900F68AEE /* ConfigurationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296617472726CC0900F68AEE /* ConfigurationTableViewController.swift */; };
 		29A345992714E9ED00F39945 /* AutoLayoutPortrait.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 29A345972714E9ED00F39945 /* AutoLayoutPortrait.jpg */; };
 		29A3459C2714EC9E00F39945 /* AutoLayoutLandscape.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 29A3459B2714EC9E00F39945 /* AutoLayoutLandscape.jpg */; };
 		29B511C727143288003E83DD /* ConnectFourTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B511C627143288003E83DD /* ConnectFourTests.swift */; };
@@ -59,6 +65,12 @@
 		290036A6271449E4002678FB /* EditPlayerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPlayerTableViewController.swift; sourceTree = "<group>"; };
 		290036A7271449E4002678FB /* ConnectFourViewController+GameState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ConnectFourViewController+GameState.swift"; sourceTree = "<group>"; };
 		290036A8271449E4002678FB /* ConnectFourViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectFourViewController.swift; sourceTree = "<group>"; };
+		2966173327248DC300F68AEE /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		2966173427248DC300F68AEE /* HTTPStatusCodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPStatusCodes.swift; sourceTree = "<group>"; };
+		2966173827248F0C00F68AEE /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		2966173A2724923E00F68AEE /* ChooseColorTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseColorTableViewController.swift; sourceTree = "<group>"; };
+		296617452726BF2C00F68AEE /* GameConfig+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameConfig+Equatable.swift"; sourceTree = "<group>"; };
+		296617472726CC0900F68AEE /* ConfigurationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationTableViewController.swift; sourceTree = "<group>"; };
 		29A345972714E9ED00F39945 /* AutoLayoutPortrait.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = AutoLayoutPortrait.jpg; sourceTree = "<group>"; };
 		29A3459B2714EC9E00F39945 /* AutoLayoutLandscape.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = AutoLayoutLandscape.jpg; sourceTree = "<group>"; };
 		29B511AC27143287003E83DD /* ConnectFour.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ConnectFour.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,7 +114,8 @@
 		29003697271449E4002678FB /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				29003698271449E4002678FB /* AppStrings.swift */,
+				2966173227248DC300F68AEE /* Utility Helper */,
+				2966173727248DCD00F68AEE /* View Helper */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -113,6 +126,7 @@
 				2900369A271449E4002678FB /* GameConfig.swift */,
 				2900369B271449E4002678FB /* ConnectFour.swift */,
 				2900369C271449E4002678FB /* Player.swift */,
+				296617452726BF2C00F68AEE /* GameConfig+Equatable.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -140,9 +154,11 @@
 		290036A5271449E4002678FB /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				290036A6271449E4002678FB /* EditPlayerTableViewController.swift */,
-				290036A7271449E4002678FB /* ConnectFourViewController+GameState.swift */,
 				290036A8271449E4002678FB /* ConnectFourViewController.swift */,
+				290036A7271449E4002678FB /* ConnectFourViewController+GameState.swift */,
+				296617472726CC0900F68AEE /* ConfigurationTableViewController.swift */,
+				290036A6271449E4002678FB /* EditPlayerTableViewController.swift */,
+				2966173A2724923E00F68AEE /* ChooseColorTableViewController.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -154,6 +170,24 @@
 				29A345972714E9ED00F39945 /* AutoLayoutPortrait.jpg */,
 			);
 			path = ReadMeImages;
+			sourceTree = "<group>";
+		};
+		2966173227248DC300F68AEE /* Utility Helper */ = {
+			isa = PBXGroup;
+			children = (
+				2966173327248DC300F68AEE /* Network.swift */,
+				2966173427248DC300F68AEE /* HTTPStatusCodes.swift */,
+			);
+			path = "Utility Helper";
+			sourceTree = "<group>";
+		};
+		2966173727248DCD00F68AEE /* View Helper */ = {
+			isa = PBXGroup;
+			children = (
+				2966173827248F0C00F68AEE /* LoadingViewController.swift */,
+				29003698271449E4002678FB /* AppStrings.swift */,
+			);
+			path = "View Helper";
 			sourceTree = "<group>";
 		};
 		29B511A327143287003E83DD = {
@@ -315,9 +349,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				290036B2271449E4002678FB /* UIViewController+ChildViewController.swift in Sources */,
+				2966173B2724923E00F68AEE /* ChooseColorTableViewController.swift in Sources */,
 				290036AC271449E4002678FB /* AppStrings.swift in Sources */,
+				296617482726CC0900F68AEE /* ConfigurationTableViewController.swift in Sources */,
+				2966173627248DC300F68AEE /* HTTPStatusCodes.swift in Sources */,
+				2966173527248DC300F68AEE /* Network.swift in Sources */,
 				290036B7271449E4002678FB /* ConnectFourViewController+GameState.swift in Sources */,
+				2966173927248F0C00F68AEE /* LoadingViewController.swift in Sources */,
 				290036AB271449E4002678FB /* SceneDelegate.swift in Sources */,
+				296617462726BF2C00F68AEE /* GameConfig+Equatable.swift in Sources */,
 				290036B3271449E4002678FB /* UIViewController+Alert.swift in Sources */,
 				290036AE271449E4002678FB /* ConnectFour.swift in Sources */,
 				290036AD271449E4002678FB /* GameConfig.swift in Sources */,

@@ -8,6 +8,9 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ 
+  Abstract:
+  The extension adds the possibility to a UIViewController to show different alerts depending on the context.
  */
 
 import UIKit
@@ -15,11 +18,14 @@ import UIKit
 extension UIViewController {
     
     /**
-     Presents an error alert.
+     Presents an info alert with actions.
      
      - Parameter title: The title of the alert.
      - Parameter message: The message of the alert.
-     - Parameter retryActionHandler: The handler for the retry action.
+     - Parameter firstActionTitle: The title of the first action.
+     - Parameter secondActionTitle: The title of the second action.
+     - Parameter firstAction: The first action of the alert.
+     - Parameter secondAction: The second action of the alert.
      
      Style for first action is .cancel. Style for second action is .default
      */
@@ -27,14 +33,14 @@ extension UIViewController {
                               message: String?,
                               firstActionTitle: String,
                               secondActionTitle: String,
-                              firstAction: (() -> Void)?,
-                              secondAction: (() -> Void)?) {
+                              firstAction: @escaping () -> Void = {},
+                              secondAction: @escaping () -> Void = {}) {
         
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        let firstAlertAction = UIAlertAction(title: firstActionTitle, style: .cancel, handler: { _ in ( firstAction ?? {})() })
+        let firstAlertAction = UIAlertAction(title: firstActionTitle, style: .cancel) { _ in firstAction() }
         
-        let secondAlertAction = UIAlertAction(title: secondActionTitle, style: .default, handler: { _ in ( secondAction ?? {})() })
+        let secondAlertAction = UIAlertAction(title: secondActionTitle, style: .default) { _ in secondAction() }
         
         alertController.addAction(firstAlertAction)
         alertController.addAction(secondAlertAction)
@@ -43,19 +49,45 @@ extension UIViewController {
     }
     
     /**
-     Presents an info alert.
+     Presents an info alert with an Ok button.
+     
+     - Parameter title: The title of the alert.
+     - Parameter message: The message of the alert.
+     - Parameter action: The action when the Ok button was tapped.
+     */
+    func showInfoAlert(title: String?, message: String?, action: @escaping () -> Void = {} ) {
+        
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: AppStrings.Alert.okTitle, style: .default) { _ in action() }
+        
+        alertController.addAction(okAction)
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    /**
+     Presents an info alert with a link to the app settings.
      
      - Parameter title: The title of the alert.
      - Parameter message: The message of the alert.
      */
-    func showInfoAlert(title: String?, message: String?) {
+    func showInfoAlertWithLinkToSettings(title: String?, message: String?) {
         
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
+        let settingsAction = UIAlertAction(title: AppStrings.Alert.settingsBtn, style: .default) { _ in
+            
+            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                return
+            }
+    
+            if UIApplication.shared.canOpenURL(settingsUrl) {
+                UIApplication.shared.open(settingsUrl)
+            }
+        }
         let okAction = UIAlertAction(title: AppStrings.Alert.okTitle, style: .default)
-        
         alertController.addAction(okAction)
-        
+        alertController.addAction(settingsAction)
         present(alertController, animated: true, completion: nil)
     }
 }

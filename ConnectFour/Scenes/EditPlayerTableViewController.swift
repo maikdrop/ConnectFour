@@ -10,7 +10,7 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  
  Abstract:
- The view controller allows the change of the player names.
+ The table view controller allows the change of the player names.
  */
 
 import UIKit
@@ -22,14 +22,9 @@ class EditPlayerTableViewController: UITableViewController {
     typealias Alert = AppStrings.Alert
     
     // MARK: - IBOutlets and Actions
-    @IBAction func cancelAction(_ sender: UIBarButtonItem) {
+    @IBOutlet private weak var saveActionBtn: UIBarButtonItem!
     
-        presentingViewController?.dismiss(animated: true)
-    }
-    
-    @IBOutlet weak var doneBtn: UIBarButtonItem!
-    
-    @IBAction func doneAction(_ sender: UIBarButtonItem) {
+    @IBAction private func saveAction(_ sender: UIBarButtonItem?) {
         
         if players.count == 2 {
             
@@ -41,8 +36,14 @@ class EditPlayerTableViewController: UITableViewController {
                 
             } else {
                 
+                tableView.endEditing(true)
+                
                 saveGameConfig()
-                oneDoneBlock()
+                
+                showInfoAlert(title: Alert.savedSuccessfullyTitle, message: "") { [weak self] in
+                    
+                    self?.navigationController?.popViewController(animated: true)
+                }
             }
         }
     }
@@ -50,8 +51,7 @@ class EditPlayerTableViewController: UITableViewController {
     // MARK: - Properties
     private let userDefaults = UserDefaults.standard
     private var players = Array<String>()
-    
-    var oneDoneBlock = { }
+    private var gameConfig: GameConfig?
 }
 
 // MARK: - Default view controller methods
@@ -59,13 +59,15 @@ extension EditPlayerTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = AppStrings.Titles.editPlayer
         setupDataSource()
     }
 }
 
-// MARK: - Table view data source methods
+// MARK: - Table view data source and delegate methods
 extension EditPlayerTableViewController {
 
+    // data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         1
     }
@@ -73,11 +75,8 @@ extension EditPlayerTableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         players.count
     }
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        AppStrings.HeaderTitles.editPlayer
-    }
 
+    // delegate
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: AppStrings.CellIdentifier.player, for: indexPath) as? EditPlayerTableViewCell {
@@ -85,12 +84,33 @@ extension EditPlayerTableViewController {
             cell.playerTextField.text = players[indexPath.row]
             cell.playerTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
             cell.playerTextField.tag = indexPath.row
+            cell.playerTextField.delegate = self
             
             if indexPath.row == 0 { cell.playerTextField.becomeFirstResponder() }
             
             return cell
         }
         return UITableViewCell()
+    }
+}
+
+// MARK: - Implementing UITextFieldDelegate protocol
+extension EditPlayerTableViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if players.contains("") {
+            
+            let tag = textField.tag == 0 ? 1 : 0
+            
+            if let cell = tableView.cellForRow(at: IndexPath(row: tag, section: 0)) as? EditPlayerTableViewCell {
+                
+                cell.playerTextField.becomeFirstResponder()
+            }
+            
+        } else { saveAction(nil) }
+        
+        return true
     }
 }
 
@@ -102,10 +122,12 @@ extension EditPlayerTableViewController {
      */
     private func setupDataSource() {
         
-        if let config = try? userDefaults.getObject(forKey: Key.gameConfigKey, as: GameConfig.self) {
+        if let config = try? userDefaults.getObject(forKey: Key.currentGameConfigKey, as: GameConfig.self) {
             
-            players.append(config.name1)
-            players.append(config.name2)
+            players.append(config.namePlayer1)
+            players.append(config.namePlayer2)
+            
+            gameConfig = config
         }
     }
     
@@ -114,13 +136,19 @@ extension EditPlayerTableViewController {
      */
     private func saveGameConfig() {
         
-        let gameConfig = GameConfig(name1: players[0], name2: players[1])
-        
-        try? userDefaults.setObject(gameConfig, forKey: Key.gameConfigKey)
+        if players.count == 2, var config = gameConfig {
+            
+            config.namePlayer1 = players[0]
+            config.namePlayer2 = players[1]
+            
+            try? userDefaults.setObject(config, forKey: Key.currentGameConfigKey)
+        }
     }
     
     /**
-     Target method when a text field changes.
+     Target method when the text field's text changes.
+     
+     - Parameter sender: The text field whos text changed.
      */
     @objc private func textFieldDidChange(_ sender: UITextField) {
         
@@ -128,8 +156,13 @@ extension EditPlayerTableViewController {
             return
         }
         
-        doneBtn.isEnabled = !text.isEmpty
-        
         players[sender.tag] = text
+        
+        saveActionBtn.isEnabled = !players.contains("")
+        
+        if let cell = tableView.cellForRow(at: IndexPath(row: sender.tag, section: 0)) as? EditPlayerTableViewCell {
+            
+            cell.redLabel.isHidden = !text.isEmpty
+        }
     }
 }

@@ -21,12 +21,9 @@ import Foundation
 struct ConnectFour {
     
     // MARK: - Properties
-    private(set) var gameField = [Array<Int>]()
-    
     private let discsToWin = 4
-    
+    private(set) var gameField = [Array<Int>]()
     private(set) var hasFourDiscsConnected = false
-    
     private(set) var fieldsAvailable = true
     
     // MARK: - Create a game

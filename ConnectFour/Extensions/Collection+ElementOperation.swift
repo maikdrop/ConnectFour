@@ -8,6 +8,9 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ 
+  Abstract:
+  The extension adds the possibility to a Collection to verify if the collection contains an element at given index.
  */
 
 import Foundation
@@ -15,14 +18,15 @@ import Foundation
 extension Collection {
     
     /**
-     Verifies if an array contains an element at given index.
+     Verifies if a collection contains an element at given index.
      
      - Parameter index: The index to verify.
      
-     - Returns: either the element at the index or nil
+     - Returns: Either the element at the index or nil.
      */
     subscript(optional index: Index) -> Iterator.Element? {
-        return self.indices.contains(index) ? self[index] : nil
+        
+        self.indices.contains(index) ? self[index] : nil
     }
     
 }
