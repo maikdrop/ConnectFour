@@ -104,8 +104,8 @@ The following list contains the most important technical informations about the 
 
 **Code Links:**
   * [ChooseColorTableViewController](ConnectFour/Scenes/ChooseColorTableViewController.swift)
-  * [Network](ConnectFour/Helper/Utility-Helper/Network.swift)
-  * [Network](ConnectFour/Models/GameConfig.swift)
+  * [Network](ConnectFour/Helper/Utility%20Helper/Network.swift)
+  * [GameConfig](ConnectFour/Models/GameConfig.swift)
 
 ## 4. Testing
 
