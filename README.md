@@ -18,7 +18,8 @@
 * [2. Concept and Implementation](#2-concept-and-implementation)
   * [2.1. MVC Design Pattern](#21-mvc-design-pattern)
   * [2.2. Auto Layout](#22-auto-layout)
-* [3. Testing](#3-testing)
+* [3. Network](#3-network)
+* [4. Testing](#4-testing)
 
 ## 1. About the App
 
@@ -41,6 +42,7 @@ The following game features haven been implemented:
 
 * 2 players play against each other on the device
 * the player names can be changed
+* the color configuration can be changed
 * the play field has a grid layout of 6x7 columns
 * the game is finished when either all fields are set or when one of the players have a row of 4 of their color diagonal, horizontal or vertical
 
@@ -73,7 +75,7 @@ The following list contains the most important technical informations about the 
 <br/>
 <figure>
   <p align="center">
-    <img src="/ConnectFour/Resources/ReadMeImages/AutoLayoutLandscape.jpg" align="center" width="450">
+    <img src="/AutoLayoutLandscape.jpg" align="center" width="450">
      <p align="center">Screenshot 1: Game Scene Landscape; Source: Own Illustration
   </p>
 </figure>
@@ -81,15 +83,33 @@ The following list contains the most important technical informations about the 
 
 <figure>
   <p align="center">
-    <img src="/ConnectFour/Resources/ReadMeImages/AutoLayoutPortrait.jpg" align="center" width="350">
+    <img src="/AutoLayoutPortrait.jpg" align="center" width="350">
      <p align="center">Screenshot 2: Game Scene Portrait; Source: Own Illustration
   </p>
 </figure>
 <br/>
 
-## 3. Testing
+## 3. Network
+
+<p align="justify">Network requests are used to fetch possible game configurations from a local backend, which was created with Spring Boot. The configurations consist of default player names and color combinations. Screenshot 3 illustrates the list of the fetched and displayed colors. The default player names aren`t used in this list. Instead, the current player names will be used to reflect the possible colors. The checkmark on the right side shows the current selection.</p>
+<br/>
+
+<figure>
+  <p align="center">
+    <img src="/ColorConfigurationLandscape.jpg" align="center" width="450">
+     <p align="center">Screenshot 3: Color Configuration List Landscape; Source: Own Illustration
+  </p>
+</figure>
+<br/>
+
+**Code Links:**
+  * [ChooseColorTableViewController](ConnectFour/Scenes/ChooseColorTableViewController.swift)
+  * [Network](ConnectFour/Helper/Utility Helper/Network.swift)
+  * [Network](ConnectFour/Models/GameConfig.swift)
+
+## 4. Testing
 
 <p align="justify">Unit tests have been used to test and verify the game logic. It's tested if 4 discs in a row are detected horizotally, vertically and diagonally. Furthermore, it's tested when all fields are set.</p>
 
+**Code Links:**
 * [Unit tests](ConnectFourTests/ConnectFourTests.swift)
-
