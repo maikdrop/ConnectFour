@@ -75,7 +75,7 @@ The following list contains the most important technical informations about the 
 <br/>
 <figure>
   <p align="center">
-    <img src="/AutoLayoutLandscape.jpg" align="center" width="450">
+    <img src="/ConnectFour/Resources/ReadMeImages/AutoLayoutLandscape.jpg" align="center" width="450">
      <p align="center">Screenshot 1: Game Scene Landscape; Source: Own Illustration
   </p>
 </figure>
@@ -83,7 +83,7 @@ The following list contains the most important technical informations about the 
 
 <figure>
   <p align="center">
-    <img src="/AutoLayoutPortrait.jpg" align="center" width="350">
+    <img src="/ConnectFour/Resources/ReadMeImages/AutoLayoutPortrait.jpg" align="center" width="350">
      <p align="center">Screenshot 2: Game Scene Portrait; Source: Own Illustration
   </p>
 </figure>
@@ -96,7 +96,7 @@ The following list contains the most important technical informations about the 
 
 <figure>
   <p align="center">
-    <img src="/ColorConfigurationLandscape.jpg" align="center" width="450">
+    <img src="/ConnectFour/Resources/ReadMeImages/ColorConfigurationLandscape.jpg" align="center" width="450">
      <p align="center">Screenshot 3: Color Configuration List Landscape; Source: Own Illustration
   </p>
 </figure>
@@ -104,7 +104,7 @@ The following list contains the most important technical informations about the 
 
 **Code Links:**
   * [ChooseColorTableViewController](ConnectFour/Scenes/ChooseColorTableViewController.swift)
-  * [Network](ConnectFour/Helper/Utility Helper/Network.swift)
+  * [Network](ConnectFour/Helper/Utility-Helper/Network.swift)
   * [Network](ConnectFour/Models/GameConfig.swift)
 
 ## 4. Testing
