@@ -24,20 +24,29 @@ class ChooseColorTableViewController: UITableViewController {
     typealias Key = AppStrings.UserDefaults
     typealias Alert = AppStrings.Alert
     typealias Cell = AppStrings.CellIdentifier
-
+    
+    @IBOutlet private weak var refreshBtn: UIBarButtonItem!
+    
+    @IBAction private func refreshActionBtn(_ sender: UIBarButtonItem) {
+    
+        fetchGameConfigs()
+    }
+    
     // MARK: - Properties
-    private let loadingVC = LoadingViewController()
+    private lazy var spinner = configureSpinningIndicator()
     private let userDefaults = UserDefaults.standard
     private var currentGameConfig: GameConfig?
-    private var storedGameConfigs = [GameConfig]()
     private var cancellableObserver: Cancellable?
     
     private var fetchedGameConfigs = [GameConfig]() {
         didSet {
-            if fetchedGameConfigs != storedGameConfigs {
+            
+            if oldValue != fetchedGameConfigs {
+                
                 try? userDefaults.setObject(fetchedGameConfigs, forKey: Key.fetchedGameConfigsKey)
+                
+                tableView.reloadData()
             }
-            tableView.reloadData()
         }
     }
 }
@@ -50,7 +59,6 @@ extension ChooseColorTableViewController {
         navigationItem.title = AppStrings.Titles.chooseColors
         getCurrentUsedGameConfig()
         getStoredGameConfigs()
-        fetchGameConfigs()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -102,6 +110,8 @@ extension ChooseColorTableViewController {
             combination.append(NSAttributedString(string: "        "))
             combination.append(colorStringPlayer2)
             
+            cell.accessoryType = .none
+            
             if fetchedcolorPlayer1 == UIColor(hex: (currentGameConfig?.colorPlayer1) ?? "") &&
                 fetchedcolorPlayer2 == UIColor(hex: (currentGameConfig?.colorPlayer2) ?? "") {
                 
@@ -143,13 +153,17 @@ extension ChooseColorTableViewController {
             
             if let url = GameConfig.url {
                 
-                add(loadingVC)
+                refreshBtn.isEnabled = false
+                
+                view.addSubview(spinner)
                 
                 Network.fetchData(from: url) { fetchedData in
                     
                     DispatchQueue.main.async {
                         
-                        self.loadingVC.remove()
+                        self.refreshBtn.isEnabled = true
+                        
+                        self.spinner.removeFromSuperview()
                         
                         if let fetcheGameConfigs = self.getGameConfigs(from: fetchedData) {
                             
@@ -213,7 +227,7 @@ extension ChooseColorTableViewController {
         
         if let configs = try? userDefaults.getObject(forKey: Key.fetchedGameConfigsKey, as: [GameConfig].self) {
             
-            storedGameConfigs = configs
+            fetchedGameConfigs = configs
         }
     }
     
@@ -226,23 +240,21 @@ extension ChooseColorTableViewController {
      Displays an error alert when an error occurs during the fetch of the game configurations.
      */
     private func errorWhileFetchingGameConfigs() {
-        
-        fetchedGameConfigs = storedGameConfigs
-        
+                
         showAlertWithActions(title: Alert.errorTitle,
-                                  message: Alert.errorMsg,
-                                  firstActionTitle: Alert.okTitle,
-                                  secondActionTitle: Alert.retryActionTitle,
-                                  secondAction: { self.fetchGameConfigs() }
-        )
+                            message: Alert.errorMsg,
+                            firstActionTitle: Alert.okTitle,
+                            secondActionTitle: Alert.retryActionTitle,
+                            secondAction: { [weak self] in
+            
+                                self?.fetchGameConfigs()
+                            })
     }
     
     /**
      Displays an info alert when the airplane is enabled.
      */
     private func noInternetConnectionAvailable() {
-        
-        fetchedGameConfigs = storedGameConfigs
         
         showInfoAlertWithLinkToSettings(title: Alert.noConnectionAlertTitle, message: "")
     }
@@ -261,5 +273,17 @@ extension ChooseColorTableViewController {
             for: UIApplication.willEnterForegroundNotification,
             object: nil)
             .sink { [weak self] _ in self?.fetchGameConfigs() }
+    }
+    
+    /**
+     Configures a spinning indicator for the center of the view.
+     */
+    private func configureSpinningIndicator() -> UIActivityIndicatorView {
+        
+        let spinner = UIActivityIndicatorView(style: .large)
+        spinner.center = view.center
+        spinner.startAnimating()
+        
+        return spinner
     }
 }
