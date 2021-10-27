@@ -64,6 +64,11 @@ extension ChooseColorTableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setupSubscriberForNotificationCenter()
+        
+        if fetchedGameConfigs.isEmpty {
+            
+            fetchGameConfigs()
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {

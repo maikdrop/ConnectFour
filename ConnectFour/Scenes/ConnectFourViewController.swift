@@ -235,7 +235,12 @@ extension ConnectFourViewController {
             
             gameConfig = config
         
-        } else { gameConfig = GameConfig() }
+        } else {
+            
+            gameConfig = GameConfig()
+            
+            try? userDefaults.setObject(gameConfig, forKey: Key.currentGameConfigKey)
+        }
     }
     
     @objc private func onDoneAction() {
