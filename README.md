@@ -91,7 +91,7 @@ The following list contains the most important technical informations about the 
 
 ## 3. Network
 
-<p align="justify">Network requests are used to fetch possible game configurations from a local backend, which was created with Spring Boot. The configurations consist of default player names and color combinations. Screenshot 3 illustrates the list of the fetched and displayed colors. The default player names aren`t used in this list. Instead, the current player names will be used to reflect the possible colors. The checkmark on the right side shows the current selection.</p>
+<p align="justify">Network requests are used to fetch possible game configurations from a local backend, which was created with Spring Boot. The configurations consist of default player names and color combinations. Screenshot 3 illustrates the list of the fetched and displayed colors. The default player names aren't used in this list. Instead, the current player names will be used to reflect the possible colors. The checkmark on the right side shows the current selection. The configuration list can always be refreshed with the refresh button on the right side of the navigation bar and will be stored in the User Defaults. If the backend isn't available or there is no network connection, the stored list will be displayed.</p>
 <br/>
 
 <figure>
